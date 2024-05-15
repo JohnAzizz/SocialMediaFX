@@ -113,7 +113,7 @@
                <children>
                   <AnchorPane prefHeight="76.0" prefWidth="446.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutY="25.0" prefHeight="40.0" prefWidth="95.0" text="Feed" textAlignment="CENTER">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutY="23.0" prefHeight="40.0" prefWidth="95.0" text="Feed" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold Italic" size="20.0" />
                            </font>
