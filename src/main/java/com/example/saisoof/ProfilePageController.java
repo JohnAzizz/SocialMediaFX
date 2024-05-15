@@ -36,7 +36,7 @@ public class ProfilePageController implements Initializable {
     private Button editBio;
 
     @FXML
-    private Button editPic;
+    private Hyperlink editPic;
 
     @FXML
     private Button saveButton;
@@ -51,7 +51,10 @@ public class ProfilePageController implements Initializable {
     private ScrollPane scrollGrid;
 
     @FXML
-    private Button timelineButton;
+    private Hyperlink timelineLink;
+
+    @FXML
+    private Hyperlink addPostLink;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -93,7 +96,7 @@ public class ProfilePageController implements Initializable {
     @FXML
     public void handleTimeline(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("TimelinePage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Timeline.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setResizable(false);
@@ -101,11 +104,16 @@ public class ProfilePageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
 
-            Stage currentStage = (Stage) timelineButton.getScene().getWindow();
+            Stage currentStage = (Stage) timelineLink.getScene().getWindow();
             currentStage.close();
         }
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void handleAddPost(){
+
     }
 }

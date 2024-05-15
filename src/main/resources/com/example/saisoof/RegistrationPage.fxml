@@ -38,7 +38,7 @@
             <PasswordField fx:id="passwordField" layoutX="64.0" layoutY="409.0" promptText="Enter Password" style="-fx-background-color: #FAFAFA;" />
             <TextField fx:id="firstNameField" layoutX="63.0" layoutY="275.0" prefHeight="26.0" prefWidth="70.0" promptText="First" style="-fx-background-color: #FAFAFA;" />
             <TextField fx:id="lastNameField" layoutX="143.0" layoutY="275.0" prefHeight="26.0" prefWidth="70.0" promptText="Last" style="-fx-background-color: #FAFAFA;" />
-            <Button fx:id="registerButton" layoutX="106.0" layoutY="493.0" mnemonicParsing="false" style="-fx-background-color: #000000;" text="Register" textFill="WHITE">
+            <Button fx:id="registerButton" onAction="#handleRegister" layoutX="106.0" layoutY="493.0" mnemonicParsing="false" style="-fx-background-color: #000000;" text="Register" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
