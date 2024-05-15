@@ -65,8 +65,6 @@ public class ProfilePageController implements Initializable {
         bio.setText(Login.getCurrentUser().getBio());
         bio.setEditable(false);
         saveButton.setVisible(false);
-        postGrid.setHgap(40);
-        postGrid.setVgap(25);
         scrollGrid.setContent(postGrid);
     }
 
