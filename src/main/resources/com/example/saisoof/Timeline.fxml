@@ -135,7 +135,7 @@
                      </children>
                   </AnchorPane>
                </children></HBox>
-            <ScrollPane layoutX="3.0" layoutY="75.0" prefHeight="327.0" prefWidth="445.0" />
+            <ScrollPane fx:id="scrollPosts" layoutX="3.0" layoutY="75.0" prefHeight="327.0" prefWidth="445.0" />
          </children>
       </AnchorPane>
    </center>
