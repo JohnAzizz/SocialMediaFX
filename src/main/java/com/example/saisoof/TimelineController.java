@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class TimelineController implements Initializable {
@@ -45,6 +47,14 @@ public class TimelineController implements Initializable {
             int index = i;
             Label usernameFLabel = new Label(Timeline.allposts.get(i).getAuthor().getUsername());
             usernameFLabel.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+
+            LocalDateTime dateTime = Timeline.allposts.get(i).getTimeStamp().toLocalDateTime();
+            LocalDate dateCreated = dateTime.toLocalDate();
+            Label timestamp = new Label(dateCreated.toString());
+            timestamp.setFont(Font.font("Arial", 12));
+
+            HBox nameTime = new HBox(40, usernameFLabel, timestamp);
+            nameTime.setAlignment(Pos.CENTER_LEFT);
 
             ImageView post = new ImageView(Timeline.allposts.get(i).getUrl());
             post.setFitWidth(200);
@@ -107,7 +117,7 @@ public class TimelineController implements Initializable {
             });
             HBox commentssection = new HBox(20,addcommButton,numberofcomments);
 
-            VBox datasection = new VBox(10,usernameFLabel,captionLabel,likessection,commenTextField,commentssection);
+            VBox datasection = new VBox(10, nameTime,captionLabel,likessection,commenTextField,commentssection);
 
             ScrollPane scrollComments = new ScrollPane();
             scrollComments.setMaxHeight(200);

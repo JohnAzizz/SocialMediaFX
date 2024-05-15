@@ -77,6 +77,5 @@ public class Timeline {
             e.printStackTrace();
             System.out.println("EEEEEEEEEEERRROORRRRRRRRRRRRRR");
         }
-        //TODO: show user posts in the timeline
     }
 }
