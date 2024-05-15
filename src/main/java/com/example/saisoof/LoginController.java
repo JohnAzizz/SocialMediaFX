@@ -45,7 +45,6 @@ public class LoginController {
     @FXML
     private void handleLogin(ActionEvent event) {
         if(Login.loginUser(usernameField.getText().toLowerCase(), passwordField.getText()) != null){
-            logErrorLabel.setText("");
             Login.setCurrentUser(Login.loginUser(usernameField.getText().toLowerCase(), passwordField.getText()));
             Main.initializeUserFollowers(Login.getCurrentUser());
             Main.initializeUserPosts(Login.getCurrentUser());
@@ -66,7 +65,9 @@ public class LoginController {
                 e.printStackTrace();
             }
         }
-        logErrorLabel.setText("Invalid info");
+        else{
+            logErrorLabel.setText("Invalid info");
+        }
     }
 
     @FXML

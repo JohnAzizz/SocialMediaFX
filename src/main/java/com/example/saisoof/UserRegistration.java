@@ -20,6 +20,7 @@ public class UserRegistration{
 
             try{
                 if (preparedStatement.executeUpdate() > 0) {
+                    Main.allUsers.add(new UserProfile(username, email, password));
                     return true;
                 }
                 else{
