@@ -19,13 +19,11 @@ public class ForgotPassword {
                 return true;
             }
             else{
-                ForgotPasswordController.resetpassErrorLabel.setText("Invalid info");
                 return false;
             }
 
         }
         catch (SQLException e) {
-            ForgotPasswordController.resetpassErrorLabel.setText(e.getMessage());
             e.printStackTrace();
             return false;
         }

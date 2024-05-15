@@ -55,8 +55,8 @@ public class RegistrationController {
         else if (!UserRegistration.verifyEmail(emailField.getText())){
             regErrorLabel.setText("Invalid email address");
         }
-        else if (UserRegistration.passLen(passwordField.getText())){
-            regErrorLabel.setText("Password must be more than 6 characters");
+        else if (!UserRegistration.passLen(passwordField.getText())){
+            regErrorLabel.setText("Password too short");
         }
         else if (UserRegistration.registerUser(usernameField.getText().toLowerCase(), passwordField.getText(), emailField.getText().toLowerCase(), firstNameField.getText(), lastNameField.getText())){
             Main.selffollow(usernameField.getText().toLowerCase());

@@ -57,5 +57,8 @@ public class ForgotPasswordController {
                 e.printStackTrace();
             }
         }
+        else{
+            resetpassErrorLabel.setText("Invalid info");
+        }
     }
 }

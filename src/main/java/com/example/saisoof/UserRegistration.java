@@ -9,20 +9,6 @@ public class UserRegistration{
 
     public static boolean registerUser(String username, String password, String email, String firstN, String lastN){
 
-        if (username.contains(" ")) {
-            RegistrationController.regErrorLabel.setText("Username cannot contain spaces");
-            return false;
-        }
-
-        if (!verifyEmail(email)){
-            return false;
-        }
-
-        if (!passLen(password)){
-            RegistrationController.regErrorLabel.setText("Password must be more than 6 characters");
-            return false;
-        }
-
         try (Connection connection = DriverManager.getConnection(Main.url, Main.dbuser, Main.dbpassword)){
             String sql = "INSERT INTO users (email, username, pass, firstN, lastN) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
