@@ -3,11 +3,14 @@ package com.example.saisoof;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,52 +41,87 @@ public class TimelineController implements Initializable {
         for(int i = 0; i < Timeline.allposts.size(); i++){
             int index = i;
             Label usernameFLabel = new Label(Timeline.allposts.get(i).getAuthor().getUsername());
+            usernameFLabel.setFont(Font.font("Arial", FontWeight.BOLD, 18));
 
             ImageView post = new ImageView(Timeline.allposts.get(i).getUrl());
             post.setFitWidth(200);
-            post.setFitHeight(300);
+            post.setFitHeight(200);
 
             Label captionLabel = new Label(Timeline.allposts.get(i).getCaption());
 
             ToggleButton addlikeButton = new ToggleButton("Like");
+            addlikeButton.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-weight: bold;");
+
             Label numberoflikes = new Label(""+Timeline.allposts.get(i).getLikeCount()+ " Likes");
+            numberoflikes.setFont(Font.font("Arial", FontWeight.BOLD, 16));
             addlikeButton.setOnAction(e->{
-                if (addlikeButton.isSelected() && Timeline.allposts.get(index).Alreadyliked(Timeline.allposts.get(index),Login.getCurrentUser())) {
-                    addlikeButton.setText("unlike");
+                if (addlikeButton.isSelected() && Timeline.allposts.get(index).Alreadyliked(Timeline.allposts.get(index))) {
+                    addlikeButton.setText("Unlike");
                     Timeline.allposts.get(index).addlike(Timeline.allposts.get(index).getPostId());
                     numberoflikes.setText(""+(Timeline.allposts.get(index).getLikeCount())+" Likes");
                 }
                 else {
-                    addlikeButton.setText("like");
+                    addlikeButton.setText("Like");
                     Timeline.allposts.get(index).removelike(Timeline.allposts.get(index).getPostId());
-                    numberoflikes.setText(""+(Timeline.allposts.get(index).getLikeCount()) + " LiKes");
+                    numberoflikes.setText(""+(Timeline.allposts.get(index).getLikeCount()) + " Likes");
                 }
             });
             HBox likessection = new HBox(20,addlikeButton,numberoflikes);
 
-            TextArea commenTextArea = new TextArea();
+            TextField commenTextField = new TextField();
 
-            commenTextArea.setPrefHeight(25);
-            commenTextArea.setPrefWidth(40);
-            commenTextArea.setEditable(true);
-            commenTextArea.setStyle("-fx-background-color: #FAFAFA; -fx-border-width: 0px;");
+            commenTextField.setPrefHeight(10);
+            commenTextField.setPrefWidth(40);
+            commenTextField.setStyle("-fx-background-color: #FAFAFA; -fx-border-width: 0px;");
+
             Label numberofcomments = new Label(""+Timeline.allposts.get(i).getCommentCount()+ " Comments");
+            numberofcomments.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
-            Button addcommButton = new Button("add comment");
+            VBox postComments = new VBox(10);
+            for(int j = 0; j < Timeline.allposts.get(index).getCommentCount(); j++){
+                Label commentorusername = new Label(""+Timeline.allposts.get(index).getComments().get(j).getAuthor().getUsername());
+                commentorusername.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+                Label comment = new Label(Timeline.allposts.get(index).getComments().get(j).getContent());
+                comment.setFont(Font.font("Arial", 14));
+                postComments.getChildren().addAll(commentorusername, comment);
+            }
+
+            Button addcommButton = new Button("Comment");
+            addcommButton.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-weight: bold;");
             addcommButton.setOnAction(e->{
-                if (commenTextArea.getText().isEmpty()){
+                if (commenTextField.getText().isEmpty()){
                 }
                 else{
-                    Timeline.allposts.get(index).addcomment(commenTextArea.getText());
+                    Timeline.allposts.get(index).addcomment(commenTextField.getText());
                     numberofcomments.setText(""+ (Timeline.allposts.get(index).getCommentCount())+ " Comments");
-
+                    Label commentorusername = new Label(Login.getCurrentUser().getUsername());
+                    commentorusername.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+                    Label comment = new Label(commenTextField.getText());
+                    comment.setFont(Font.font("Arial", 14));
+                    postComments.getChildren().addAll(commentorusername, comment);
+                    commenTextField.clear();
                 }
             });
             HBox commentssection = new HBox(20,addcommButton,numberofcomments);
 
-            VBox datasection = new VBox(10,usernameFLabel,captionLabel,likessection,commenTextArea,commentssection);
-            HBox Npost = new HBox(20,post, datasection);
-            posts.getChildren().add(Npost);
+            VBox datasection = new VBox(10,usernameFLabel,captionLabel,likessection,commenTextField,commentssection);
+
+            ScrollPane scrollComments = new ScrollPane();
+            scrollComments.setMaxHeight(200);
+            scrollComments.setStyle("-fx-background-color: #FFFFFF");
+            scrollComments.setPrefWidth(150);
+
+            if (Timeline.allposts.get(index).getCommentCount() >0) {
+                scrollComments.setContent(postComments);
+                HBox Npost = new HBox(15,post, datasection,scrollComments);
+                posts.getChildren().add(Npost);
+            }
+            else{
+                HBox Npost = new HBox(15,post, datasection);
+                posts.getChildren().add(Npost);
+            }
+
+
         }
 
         scrollPosts.setContent(posts);

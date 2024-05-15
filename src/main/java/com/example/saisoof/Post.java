@@ -142,9 +142,9 @@ public class Post {
         comments.add(new Comment(content,user,currentTimestamp));
     }
 
-    public boolean Alreadyliked(Post post,UserProfile UserLiker){
+    public boolean Alreadyliked(Post post){
         for(Like like: getLikes()){
-            if (like.getLiker().equals(UserLiker)){
+            if (like.getLiker().equals(Login.getCurrentUser())){
                 return false;
             }
         }

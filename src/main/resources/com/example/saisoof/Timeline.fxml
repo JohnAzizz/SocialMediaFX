@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.saisoof.TimelineController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.saisoof.TimelineController">
    <left>
       <VBox prefHeight="400.0" prefWidth="150.0" BorderPane.alignment="TOP_CENTER">
          <children>
@@ -17,9 +16,6 @@
                      <image>
                         <Image url="@3472476.png" />
                      </image>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
                   </ImageView>
                   <Label text="HIVE" textFill="WHITE">
                      <font>
@@ -27,7 +23,7 @@
                      </font></Label>
                </children>
             </HBox>
-            <VBox alignment="CENTER" prefHeight="428.0" prefWidth="156.0" spacing="5.0" style="-fx-background-color: #FFFFFF;">
+            <VBox alignment="CENTER" prefHeight="477.0" prefWidth="156.0" spacing="5.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <Hyperlink text="Hyperlink">
                      <graphic>
@@ -92,7 +88,7 @@
                                     <Image url="@7542137.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="81.0" layoutY="16.0" text="Followers">
+                              <Label layoutX="81.0" layoutY="16.0" text="Following">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
@@ -109,20 +105,20 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox layoutX="2.0" layoutY="-1.0" prefHeight="76.0" prefWidth="542.0">
+            <HBox layoutX="2.0" layoutY="-1.0" prefHeight="76.0" prefWidth="593.0">
                <children>
-                  <AnchorPane prefHeight="76.0" prefWidth="544.0" style="-fx-background-color: #FFFFFF;">
+                  <AnchorPane prefHeight="76.0" prefWidth="592.0" style="-fx-background-color: #FFFFFF;">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutY="18.0" prefHeight="40.0" prefWidth="95.0" text="Feed" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold Italic" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="usernameField" layoutX="329.0" layoutY="25.0" promptText="Enter Username" style="-fx-background-color: #FAFAFA;">
+                        <TextField fx:id="usernameField" layoutX="381.0" layoutY="25.0" promptText="Enter Username" style="-fx-background-color: #FAFAFA;">
                            <effect>
                               <ColorAdjust brightness="-0.08" />
                            </effect></TextField>
-                        <Hyperlink fx:id="followLink" layoutX="489.0" layoutY="21.0" onAction="#handleFollow">
+                        <Hyperlink fx:id="followLink" layoutX="541.0" layoutY="21.0" onAction="#handleFollow">
                            <graphic>
                               <ImageView fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -135,7 +131,7 @@
                      </children>
                   </AnchorPane>
                </children></HBox>
-            <ScrollPane fx:id="scrollPosts" layoutY="75.0" prefHeight="426.0" prefWidth="544.0" />
+            <ScrollPane fx:id="scrollPosts" layoutY="75.0" prefHeight="475.0" prefWidth="596.0" />
          </children>
       </AnchorPane>
    </center>
