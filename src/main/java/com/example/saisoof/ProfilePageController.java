@@ -111,7 +111,21 @@ public class ProfilePageController implements Initializable {
 
     @FXML
     public void handleAddPost() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddPostPage.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("HIVE");
+            stage.setScene(new Scene(root));
+            stage.show();
 
+            Stage currentStage = (Stage) addPostLink.getScene().getWindow();
+            currentStage.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -111,22 +111,27 @@
          <children>
             <HBox layoutX="2.0" layoutY="-1.0" prefHeight="76.0" prefWidth="449.0">
                <children>
-                  <AnchorPane prefHeight="76.0" prefWidth="446.0">
+                  <AnchorPane prefHeight="76.0" prefWidth="446.0" style="-fx-background-color: #FFFFFF;">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutY="23.0" prefHeight="40.0" prefWidth="95.0" text="Feed" textAlignment="CENTER">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutY="18.0" prefHeight="40.0" prefWidth="95.0" text="Feed" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold Italic" size="20.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="232.0" layoutY="18.0" promptText="Enter Username" style="-fx-background-color: #FAFAFA;">
+                        <TextField fx:id="usernameField" layoutX="235.0" layoutY="25.0" promptText="Enter Username" style="-fx-background-color: #FAFAFA;">
                            <effect>
                               <ColorAdjust brightness="-0.08" />
                            </effect></TextField>
-                        <ImageView fitHeight="28.0" fitWidth="32.0" layoutX="393.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@151773.png" />
-                           </image>
-                        </ImageView>
+                        <Hyperlink fx:id="followLink" layoutX="396.0" layoutY="21.0" onAction="#handleFollow">
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@10486778.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Hyperlink>
+                        <Label fx:id="userNotFoundLabel" layoutX="235.0" layoutY="54.0" textFill="RED" />
                      </children>
                   </AnchorPane>
                </children></HBox>

@@ -12,7 +12,10 @@ import java.io.IOException;
 public class TimelineController {
 
     @FXML
-    private TextField usernameTextField;
+    private TextField usernameField;
+
+    @FXML
+    private Label userNotFoundLabel;
 
     @FXML
     private Hyperlink profileLink;
@@ -21,7 +24,7 @@ public class TimelineController {
     private Hyperlink addPostLink;
 
     @FXML
-    private void handleProfile() {
+    public void handleProfile() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfilePage.fxml"));
             Parent root = loader.load();
@@ -40,7 +43,37 @@ public class TimelineController {
     }
 
     @FXML
-    private void handleAddPost() {
+    public void handleAddPost() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddPostPage.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("HIVE");
+            stage.setScene(new Scene(root));
+            stage.show();
 
+            Stage currentStage = (Stage) addPostLink.getScene().getWindow();
+            currentStage.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleFollow(){
+        if (Main.getProfileUsingUsername(usernameField.getText()) != null){
+            if (Login.getCurrentUser().getFollowing().contains(Main.getProfileUsingUsername(usernameField.getText()))){
+                userNotFoundLabel.setText("Already Followed");
+            }
+            else{
+                Login.getCurrentUser().send_follow(usernameField.getText().toLowerCase());
+                userNotFoundLabel.setText("");
+            }
+        }
+        else{
+            userNotFoundLabel.setText("User not found");
+        }
     }
 }
