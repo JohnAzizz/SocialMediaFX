@@ -11,11 +11,15 @@
          <children>
             <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: #000000;">
                <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@logo.png" />
-                     </image>
-                  </ImageView>
+                  <Hyperlink fx:id="refreshLink" onAction="#handleRefresh">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@logo.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Hyperlink>
                   <Label text="HIVE" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />

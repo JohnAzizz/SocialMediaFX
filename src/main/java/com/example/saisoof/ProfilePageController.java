@@ -26,6 +26,9 @@ public class ProfilePageController implements Initializable {
     private ImageView profilePic;
 
     @FXML
+    private Hyperlink refreshLink;
+
+    @FXML
     private Label usernameLabel;
 
     @FXML
@@ -123,6 +126,25 @@ public class ProfilePageController implements Initializable {
             stage.setTitle("HIVE");
             stage.setScene(new Scene(root));
             stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleRefresh(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfilePage.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("HIVE");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage currentStage = (Stage) refreshLink.getScene().getWindow();
+            currentStage.close();
         }
         catch (IOException e) {
             e.printStackTrace();

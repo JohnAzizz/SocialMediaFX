@@ -34,6 +34,9 @@ public class TimelineController implements Initializable {
     @FXML
     private ScrollPane scrollPosts;
 
+    @FXML
+    private Hyperlink refreshLink;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         VBox posts = new VBox(20);
@@ -175,6 +178,25 @@ public class TimelineController implements Initializable {
         }
         else{
             userNotFoundLabel.setText("User not found");
+        }
+    }
+
+    @FXML
+    public void handleRefresh(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Timeline.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("HIVE");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage currentStage = (Stage) refreshLink.getScene().getWindow();
+            currentStage.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
