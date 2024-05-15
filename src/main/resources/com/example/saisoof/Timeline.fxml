@@ -131,7 +131,7 @@
                               </ImageView>
                            </graphic>
                         </Hyperlink>
-                        <Label fx:id="userNotFoundLabel" layoutX="235.0" layoutY="54.0" textFill="RED" />
+                        <Label fx:id="userNotFoundLabel" layoutX="381.0" layoutY="53.0" textFill="RED" />
                      </children>
                   </AnchorPane>
                </children></HBox>

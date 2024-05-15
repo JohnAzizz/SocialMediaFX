@@ -3,6 +3,7 @@ package com.example.saisoof;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.sql.*;
+import javafx.scene.control.*;
 
 public class UserRegistration{
 
@@ -36,35 +37,26 @@ public class UserRegistration{
                     return true;
                 }
                 else{
-                    RegistrationController.regErrorLabel.setText("Registration error");
                     return false;
                 }
             }
             catch(SQLIntegrityConstraintViolationException e){
-                RegistrationController.regErrorLabel.setText("Username taken");
                 return false;
             }
 
         }
         catch (SQLException e) {
-            RegistrationController.regErrorLabel.setText("Registration Error");
             e.printStackTrace();
             return false;
         }
     }
 
-    private static boolean verifyEmail(String email) {
+    public static boolean verifyEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         Pattern p = Pattern.compile(emailRegex);
         Matcher m = p.matcher(email);
 
-        if (m.matches()){
-            return true;
-        }
-        else{
-            RegistrationController.regErrorLabel.setText("Invalid email address");
-            return false;
-        }
+        return m.matches();
     }
 
     public static boolean passLen(String password){

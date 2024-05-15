@@ -24,7 +24,7 @@ public class RegistrationController {
     private TextField usernameField;
 
     @FXML
-    public static Label regErrorLabel;
+    private Label regErrorLabel;
 
     @FXML
     private Label registerLabel;
@@ -49,10 +49,19 @@ public class RegistrationController {
         if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty() || emailField.getText().isEmpty() || firstNameField.getText().isEmpty() || lastNameField.getText().isEmpty()){
             regErrorLabel.setText("Please enter all info");
         }
+        else if (usernameField.getText().contains(" ")){
+            regErrorLabel.setText("Username cannot contain spaces");
+        }
+        else if (!UserRegistration.verifyEmail(emailField.getText())){
+            regErrorLabel.setText("Invalid email address");
+        }
+        else if (UserRegistration.passLen(passwordField.getText())){
+            regErrorLabel.setText("Password must be more than 6 characters");
+        }
         else if (UserRegistration.registerUser(usernameField.getText().toLowerCase(), passwordField.getText(), emailField.getText().toLowerCase(), firstNameField.getText(), lastNameField.getText())){
             Main.selffollow(usernameField.getText().toLowerCase());
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPagefx.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
                 stage.setResizable(false);
@@ -67,6 +76,10 @@ public class RegistrationController {
                 e.printStackTrace();
             }
         }
+        else {
+            regErrorLabel.setText("Username taken");
+        }
+
     }
 
 }

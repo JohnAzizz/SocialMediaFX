@@ -9,7 +9,6 @@ public class Login {
                 return user;
             }
         }
-        LoginController.logErrorLabel.setText("Invalid info");
         return null;
     }
 
