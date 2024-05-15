@@ -199,4 +199,20 @@ public class TimelineController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void handleFollowing(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("followers.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("HIVE");
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

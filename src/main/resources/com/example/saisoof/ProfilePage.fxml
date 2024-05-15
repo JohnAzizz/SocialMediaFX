@@ -83,7 +83,7 @@
                         </AnchorPane>
                      </graphic>
                   </Hyperlink>
-                  <Hyperlink layoutX="10.0" layoutY="207.0" text="Hyperlink">
+                  <Hyperlink fx:id="followingLink" onAction="#handleFollowing" layoutX="10.0" layoutY="207.0" text="Hyperlink">
                      <graphic>
                         <AnchorPane prefHeight="50.0" prefWidth="150.0">
                            <children>
