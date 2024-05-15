@@ -1,5 +1,4 @@
 package com.example.saisoof;
-
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +9,6 @@ import java.time.LocalDateTime;
 
 
 public class Post {
-    private static int postscounter = 1 ;
     private UserProfile author;
     private String caption;
     private Timestamp timestamp;
@@ -19,13 +17,12 @@ public class Post {
     private ArrayList<Like> likes;
     private ArrayList<Comment> comments;
 
-    Post(UserProfile author, String caption, Timestamp timestamp, String url) {
+    Post(UserProfile author, String caption, Timestamp timestamp, String url, int postId) {
         this.author = author;
         this.caption = caption;
         this.timestamp = timestamp;
         this.url=url;
-        this.postId= postscounter;
-        postscounter ++;
+        this.postId= postId;
         this.likes = new ArrayList<>();
         this.comments = new ArrayList<>();
     }
@@ -49,6 +46,7 @@ public class Post {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, Login.getCurrentUser().getUsername());
             preparedStatement.setInt(2, id);
+
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
@@ -142,6 +140,15 @@ public class Post {
 
     public void setcomments(String content,Timestamp currentTimestamp,UserProfile user){
         comments.add(new Comment(content,user,currentTimestamp));
+    }
+
+    public boolean Alreadyliked(Post post,UserProfile UserLiker){
+        for(Like like: getLikes()){
+            if (like.getLiker().equals(UserLiker)){
+                return false;
+            }
+        }
+        return true;
     }
 
     public Like searchLike(UserProfile U) {

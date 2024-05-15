@@ -40,6 +40,7 @@ public class Main extends Application{
         Application.launch(args);
     }
 
+
     public static void initializeUserArray(){
         try (Connection connection = DriverManager.getConnection(url, dbuser, dbpassword)) {
             String sql = "SELECT * FROM users";
@@ -99,7 +100,7 @@ public class Main extends Application{
                         Timestamp timestamp = rs.getTimestamp("timestmp");
 
 
-                        Post post = new Post(currentUser, caption, timestamp, url);
+                        Post post = new Post(currentUser, caption, timestamp, url,postid);
 
                         currentUser.addUserPost(post);
 
@@ -162,4 +163,18 @@ public class Main extends Application{
         allUsers.add(user);
     }
 
+    public static void selffollow(String username){
+        try (Connection connection = DriverManager.getConnection(Main.url, Main.dbuser, Main.dbpassword)){
+            String sql = "INSERT INTO followers (username , followss) VALUES (?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, username);
+
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
+

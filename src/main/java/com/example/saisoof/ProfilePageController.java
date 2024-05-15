@@ -11,7 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -111,7 +110,9 @@ public class ProfilePageController implements Initializable {
     }
 
     @FXML
-    public void handleAddPost(){
+    public void handleAddPost() {
 
     }
+
+
 }

@@ -40,7 +40,7 @@ public class Timeline {
                                     String caption = postRes.getString("caption");
                                     Timestamp timestamp = postRes.getTimestamp("timestmp");
 
-                                    Post post = new Post(Main.getProfileUsingUsername(followingUsername), caption, timestamp, url);
+                                    Post post = new Post(Main.getProfileUsingUsername(followingUsername), caption, timestamp, url,postid);
                                     allposts.add(post);
 
                                     String sql3 = "SELECT * FROM likes WHERE postid = ?";
