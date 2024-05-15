@@ -118,9 +118,6 @@ public class TimelineController implements Initializable {
             stage.setTitle("HIVE");
             stage.setScene(new Scene(root));
             stage.show();
-
-            Stage currentStage = (Stage) addPostLink.getScene().getWindow();
-            currentStage.close();
         }
         catch (IOException e) {
             e.printStackTrace();

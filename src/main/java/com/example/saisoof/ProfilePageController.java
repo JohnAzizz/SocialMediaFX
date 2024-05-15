@@ -77,6 +77,7 @@ public class ProfilePageController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(null);
         Login.getCurrentUser().setProfilePicture(selectedFile.toURI().toString());
         profilePic.setImage(new Image(selectedFile.toURI().toString()));
+        Login.getCurrentUser().updateDB();
     }
 
     @FXML
@@ -90,6 +91,7 @@ public class ProfilePageController implements Initializable {
         Login.getCurrentUser().setBio(bio.getText());
         bio.setEditable(false);
         saveButton.setVisible(false);
+        Login.getCurrentUser().updateDB();
     }
 
     @FXML
@@ -121,9 +123,6 @@ public class ProfilePageController implements Initializable {
             stage.setTitle("HIVE");
             stage.setScene(new Scene(root));
             stage.show();
-
-            Stage currentStage = (Stage) addPostLink.getScene().getWindow();
-            currentStage.close();
         }
         catch (IOException e) {
             e.printStackTrace();
