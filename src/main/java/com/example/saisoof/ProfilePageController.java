@@ -58,7 +58,9 @@ public class ProfilePageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         usernameLabel.setText(Login.getCurrentUser().getUsername());
-        profilePic.setImage(new Image(Login.getCurrentUser().getProfilePicture() != null ? Login.getCurrentUser().getProfilePicture() : "profile.png"));
+        if (Login.getCurrentUser().getProfilePicture() != null) {
+            profilePic.setImage(new Image(Login.getCurrentUser().getProfilePicture()));
+        }
         postCountLabel.setText(String.valueOf(Login.getCurrentUser().getPostCount()) + " Posts");
         followerCountLabel.setText(String.valueOf(Login.getCurrentUser().getFollowerCount()) + " Following");
         bio.setText(Login.getCurrentUser().getBio());
