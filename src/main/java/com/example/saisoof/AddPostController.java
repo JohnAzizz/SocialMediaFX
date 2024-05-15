@@ -46,20 +46,6 @@ public class AddPostController {
             LocalDateTime currentDateTime = LocalDateTime.now();
             Timestamp currentTimestamp = Timestamp.valueOf(currentDateTime);
 
-            try (Connection connection = DriverManager.getConnection(Main.url, Main.dbuser, Main.dbpassword)){
-                String sql = "INSERT INTO posts ( username, url, caption, timestmp) VALUES (?, ?, ?, ?)";
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                preparedStatement.setString(1, Login.getCurrentUser().getUsername());
-                preparedStatement.setString(2, photoURL);
-                preparedStatement.setString(3, captionField.getText());
-                preparedStatement.setTimestamp(4, currentTimestamp);
-
-                preparedStatement.executeUpdate();
-            }
-            catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-
             try {
                 Connection connection = DriverManager.getConnection(Main.url, Main.dbuser, Main.dbpassword);
                 Statement statement = connection.createStatement();
@@ -78,7 +64,7 @@ public class AddPostController {
             }
 
             Post post = new Post(Login.getCurrentUser(), captionField.getText(), currentTimestamp , photoURL,maxNumber+1);
-            Login.getCurrentUser().updatePostDB(post);;
+            Login.getCurrentUser().updatePostDB(post);
             Login.getCurrentUser().addUserPost(post);
             Stage addPostStage = (Stage) savePostButton.getScene().getWindow();
             addPostStage.close();

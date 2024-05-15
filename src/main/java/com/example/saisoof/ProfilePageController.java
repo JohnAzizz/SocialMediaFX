@@ -26,6 +26,9 @@ public class ProfilePageController implements Initializable {
     private ImageView profilePic;
 
     @FXML
+    private Hyperlink refreshLink;
+
+    @FXML
     private Label usernameLabel;
 
     @FXML
@@ -58,7 +61,9 @@ public class ProfilePageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         usernameLabel.setText(Login.getCurrentUser().getUsername());
-        profilePic.setImage(new Image(Login.getCurrentUser().getProfilePicture() != null ? Login.getCurrentUser().getProfilePicture() : "profile.png"));
+        if (Login.getCurrentUser().getProfilePicture() != null) {
+            profilePic.setImage(new Image(Login.getCurrentUser().getProfilePicture()));
+        }
         postCountLabel.setText(String.valueOf(Login.getCurrentUser().getPostCount()) + " Posts");
         followerCountLabel.setText(String.valueOf(Login.getCurrentUser().getFollowerCount()) + " Following");
         bio.setText(Login.getCurrentUser().getBio());
@@ -75,6 +80,7 @@ public class ProfilePageController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(null);
         Login.getCurrentUser().setProfilePicture(selectedFile.toURI().toString());
         profilePic.setImage(new Image(selectedFile.toURI().toString()));
+        Login.getCurrentUser().updateDB();
     }
 
     @FXML
@@ -88,6 +94,7 @@ public class ProfilePageController implements Initializable {
         Login.getCurrentUser().setBio(bio.getText());
         bio.setEditable(false);
         saveButton.setVisible(false);
+        Login.getCurrentUser().updateDB();
     }
 
     @FXML
@@ -119,8 +126,24 @@ public class ProfilePageController implements Initializable {
             stage.setTitle("HIVE");
             stage.setScene(new Scene(root));
             stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-            Stage currentStage = (Stage) addPostLink.getScene().getWindow();
+    @FXML
+    public void handleRefresh(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfilePage.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("HIVE");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage currentStage = (Stage) refreshLink.getScene().getWindow();
             currentStage.close();
         }
         catch (IOException e) {
