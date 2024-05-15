@@ -50,6 +50,7 @@ public class RegistrationController {
             regErrorLabel.setText("Please enter all info");
         }
         else if (UserRegistration.registerUser(usernameField.getText().toLowerCase(), passwordField.getText(), emailField.getText().toLowerCase(), firstNameField.getText(), lastNameField.getText())){
+            Main.selffollow(usernameField.getText().toLowerCase());
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
                 Parent root = loader.load();

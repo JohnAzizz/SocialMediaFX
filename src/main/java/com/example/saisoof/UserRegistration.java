@@ -67,7 +67,7 @@ public class UserRegistration{
         }
     }
 
-    private static boolean passLen(String password){
+    public static boolean passLen(String password){
         return password.length() >= 6;
     }
 }
