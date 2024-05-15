@@ -36,7 +36,7 @@ public class ForgotPasswordController {
     private Button resetButton;
 
     @FXML
-    public static Label resetpassErrorLabel;
+    private Label resetpassErrorLabel;
 
     @FXML
     public void handleForgotPass(){
