@@ -36,7 +36,7 @@ public class ForgotPasswordController {
     private Button resetButton;
 
     @FXML
-    private Label resetpassErrorLabel;
+    private Label resetPassErrorLabel;
 
     @FXML
     public void handleForgotPass(){
@@ -58,7 +58,7 @@ public class ForgotPasswordController {
             }
         }
         else{
-            resetpassErrorLabel.setText("Invalid info");
+            resetPassErrorLabel.setText("Invalid info");
         }
     }
 }
