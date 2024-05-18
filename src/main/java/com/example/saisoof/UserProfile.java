@@ -26,13 +26,6 @@ class UserProfile {
         this.username = username;
     }
 
-    public void setPassword(String password){
-        this.password = password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public void setBio(String bio) {
         this.bio = bio;
@@ -40,10 +33,6 @@ class UserProfile {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
-    }
-
-    public void setFollowing(ArrayList<UserProfile> followers) {
-        this.following = followers;
     }
 
     public void setLastActive(LocalDateTime lastActive) {
@@ -56,10 +45,6 @@ class UserProfile {
 
     public String getPassword(){
         return this.password;
-    }
-
-    public String getEmail() {
-        return this.email;
     }
 
     public String getBio() {

@@ -89,14 +89,6 @@ public class Post {
 
     }
 
-    public void addComment(Comment comment) {
-        comments.add(comment);
-    }
-
-    public void deleteComment(Comment comment){
-        comments.remove(comment);
-    }
-
     public int getLikeCount(){
         return likes.size();
     }
@@ -123,10 +115,6 @@ public class Post {
 
     public int getPostId() {
         return postId;
-    }
-
-    public void setPostId(int postId) {
-        this.postId = postId;
     }
 
     public void setlikes(UserProfile user , boolean addORremove){

@@ -20,12 +20,4 @@ class Comment {
     public String getContent() {
         return this.content;
     }
-
-    public void editContent(String content){
-        this.content = content;
-    }
-
-    public Timestamp getTimeStamp(){
-        return this.timestamp;
-    }
 }
